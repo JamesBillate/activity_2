@@ -5,7 +5,10 @@ function TaskManager() {
   const [taskInput, setTaskInput] = useState("");
   const [filter, setFilter] = useState("all"); // "all", "completed", "pending"
 
+  let status;
+
   const addTask = () => {
+    status = "Completed";
     if (taskInput.trim()) {
       setTasks([
         ...tasks,
@@ -28,8 +31,12 @@ function TaskManager() {
   };
 
   const filteredTasks = tasks.filter((task) => {
-    if (filter === "completed") return task.completed;
-    if (filter === "pending") return !task.completed;
+    if (filter === "completed") {
+      return task.completed;
+    }
+    if (filter === "pending") {
+      return !task.completed;
+    }
     return true;
   });
 
@@ -55,6 +62,11 @@ function TaskManager() {
           <li key={task.id} className={task.completed ? "completed" : ""}>
             <span onClick={() => toggleTask(task.id)}>{task.text}</span>
             <button onClick={() => removeTask(task.id)}>❌</button>
+            <div
+              className={`status ${task.completed ? "completed" : "pending"}`}
+            >
+              {task.completed ? "Completed" : "Pending"}
+            </div>
           </li>
         ))}
       </ul>

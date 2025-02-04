@@ -4,7 +4,7 @@ import TaskManager from "./components/TaskManager";
 function App() { 
  return ( 
    <div> 
-     <h1>📝 Task Manager App</h1> 
+     <h1 className="header">📝 Task Manager App</h1> 
      <TaskManager /> 
    </div> 
  ); 
